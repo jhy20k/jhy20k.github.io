@@ -1,17 +1,9 @@
 metadata:
-  last_updated: '2026-07-06'
+  last_updated: '2026-08-31'
 papers:
-  TQnskAwAAAAJ:2osOgNQ5qMEC:
-    citations: 0
-    title: "\uBA54\uBAA8\uB9AC \uC811\uADFC \uD6A8\uC728\uC744 \uACE0\uB824\uD55C \uD2B8\uB79C\uC2A4\uD3EC\uBA38 \uAE30\uBC18 \uBAA8\uB378\uB4E4\uC758 \uB370\uC774\uD130 \uC555\uCD95\uB960 \uBD84\uC11D"
-    year: '2024'
   TQnskAwAAAAJ:9yKSN-GCB0IC:
     citations: 11
     title: 'Survey of CPU and memory simulators in computer architecture: A comprehensive analysis including compiler integration and emerging technology applications'
-    year: '2025'
-  TQnskAwAAAAJ:IjCSPb-OGe4C:
-    citations: 0
-    title: "VLM \uC758 \uC2DC\uAC01-\uC5B8\uC5B4 \uD1A0\uD070 modality \uCC28\uC774\uC5D0 \uB530\uB978 \uC591\uC790\uD654 \uC815\uD655\uB3C4 \uC800\uD558 \uC644\uD654\uB97C \uC704\uD55C \uBB34\uC190\uC2E4 \uC555\uCD95 \uAE30\uBC95"
     year: '2025'
   TQnskAwAAAAJ:UeHWp8X0CEIC:
     citations: 2
