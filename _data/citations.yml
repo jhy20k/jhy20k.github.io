@@ -1,12 +1,12 @@
 metadata:
-  last_updated: '2026-08-31'
+  last_updated: '2026-09-02'
 papers:
   TQnskAwAAAAJ:9yKSN-GCB0IC:
     citations: 11
     title: 'Survey of CPU and memory simulators in computer architecture: A comprehensive analysis including compiler integration and emerging technology applications'
     year: '2025'
   TQnskAwAAAAJ:UeHWp8X0CEIC:
-    citations: 2
+    citations: 3
     title: 'Xnc: Xor and not-based lossless compression for optimizing unquantized embedding layers in large language models'
     year: '2025'
   TQnskAwAAAAJ:zYLM7Y9cAGgC:
