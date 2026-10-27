@@ -85,7 +85,7 @@ description: Curriculum Vitae of Junghyeok Lee.
 
   <a
     class="cv-download-icon"
-    href="{{ '/assets/pdf/CV_jhlee_2026_10.pdf' | relative_url }}"
+    href="{{ '/assets/pdf/CV_Junghyeok_Lee_2026_10.pdf' | relative_url }}"
     target="_blank"
     aria-label="Download CV PDF"
     title="Download CV PDF"
@@ -96,7 +96,7 @@ description: Curriculum Vitae of Junghyeok Lee.
 
 <div class="cv-pdf-container">
   <iframe
-    src="https://docs.google.com/gview?embedded=true&url=https://jhy20k.github.io/assets/pdf/CV_jhlee_2026_10.pdf"
+    src="https://docs.google.com/gview?embedded=true&url=https://jhy20k.github.io/assets/pdf/CV_Junghyeok_Lee_2026_10.pdf"
     title="Junghyeok Lee CV">
   </iframe>
 </div>
