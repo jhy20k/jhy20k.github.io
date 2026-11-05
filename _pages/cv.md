@@ -63,7 +63,6 @@ description: Curriculum Vitae of Junghyeok Lee.
 
 .cv-pdf-container {
   width: 100%;
-  height: 85vh;
   border: 1px solid var(--global-divider-color);
   border-radius: 12px;
   overflow: hidden;
