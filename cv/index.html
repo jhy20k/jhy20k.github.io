@@ -67,12 +67,97 @@
   background: var(--global-bg-color);
 }
 
+.cv-pdf-pages {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+}
+
+.cv-pdf-page {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 14px;
+  background: #ffffff;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.12);
+}
+
+.cv-pdf-status,
+.cv-pdf-fallback {
+  padding: 1rem;
+  text-align: center;
+}
+
+.cv-pdf-fallback {
+  margin: 0;
+  padding-top: 0.35rem;
+  font-size: 0.88rem;
+}
+
 .cv-pdf-container iframe {
   width: 100%;
   height: 100%;
-  border: none;
+  min-height: 60vh;
+  border: 0;
 }
-</style> <div class="cv-header"> <div class="cv-title-block"> <h1 class="cv-main-title">Curriculum Vitae</h1> <p class="cv-name">Junghyeok Lee</p> </div> <a class="cv-download-icon" href="/assets/pdf/CV_Junghyeok_Lee_2026_10.pdf" target="_blank" aria-label="Download CV PDF" title="Download CV PDF"> <i class="fas fa-file-pdf"></i> </a> </div> <div class="cv-pdf-container"> <iframe src="https://docs.google.com/gview?embedded=true&amp;url=https://jhy20k.github.io/assets/pdf/CV_Junghyeok_Lee_2026_10.pdf" title="Junghyeok Lee CV"> </iframe> </div> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Junghyeok Lee. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
+</style> <div class="cv-header"> <div class="cv-title-block"> <h1 class="cv-main-title">Curriculum Vitae</h1> <p class="cv-name">Junghyeok Lee</p> </div> <a class="cv-download-icon" href="/assets/pdf/CV_Junghyeok_Lee_2026_10.pdf" target="_blank" aria-label="Download CV PDF" title="Download CV PDF"> <i class="fas fa-file-pdf"></i> </a> </div> <div class="cv-pdf-container" aria-label="CV PDF preview"> <div id="cv-pdf-status" class="cv-pdf-status" role="status">Loading CV preview…</div> <div id="cv-pdf-pages" class="cv-pdf-pages"></div> </div> <p class="cv-pdf-fallback"> If the preview does not load, <a href="/assets/pdf/CV_Junghyeok_Lee_2026_10.pdf" target="_blank" rel="noopener">open the CV PDF directly</a>. </p> <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script> <script>
+  (async function () {
+    const pdfUrl = "/assets/pdf/CV_Junghyeok_Lee_2026_10.pdf";
+    const pages = document.getElementById("cv-pdf-pages");
+    const status = document.getElementById("cv-pdf-status");
+
+    try {
+      if (!window.pdfjsLib) {
+        throw new Error("PDF.js library unavailable");
+      }
+
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+      const pdf = await pdfjsLib.getDocument(pdfUrl).promise;
+
+      for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
+        status.textContent = "Rendering CV: " + pageNumber + " / " + pdf.numPages;
+
+        const page = await pdf.getPage(pageNumber);
+        const originalViewport = page.getViewport({ scale: 1 });
+        const availableWidth = Math.max(240, pages.clientWidth - 28);
+        const viewport = page.getViewport({
+          scale: availableWidth / originalViewport.width,
+        });
+        const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d");
+
+        canvas.className = "cv-pdf-page";
+        canvas.setAttribute("role", "img");
+        canvas.setAttribute("aria-label", "CV page " + pageNumber);
+        canvas.width = Math.ceil(viewport.width * pixelRatio);
+        canvas.height = Math.ceil(viewport.height * pixelRatio);
+        canvas.style.width = viewport.width + "px";
+        canvas.style.height = viewport.height + "px";
+        pages.appendChild(canvas);
+
+        await page.render({
+          canvasContext: context,
+          viewport: viewport,
+          transform: pixelRatio !== 1 ? [pixelRatio, 0, 0, pixelRatio, 0, 0] : undefined,
+        }).promise;
+      }
+
+      status.hidden = true;
+    } catch (error) {
+      console.error("Unable to render CV with PDF.js:", error);
+      status.textContent = "The interactive preview is unavailable. You can still view the PDF below or open it using the link.";
+      pages.innerHTML = "";
+      const iframe = document.createElement("iframe");
+      iframe.src = pdfUrl + "#toolbar=1";
+      iframe.title = "Junghyeok Lee CV PDF";
+      iframe.loading = "lazy";
+      pages.appendChild(iframe);
+    }
+  })();
+</script> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Junghyeok Lee. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="external nofollow noopener">GitHub Pages</a>. </div> </footer> <script>
   window.alFolio = {
     compatBootstrap: false
   };
